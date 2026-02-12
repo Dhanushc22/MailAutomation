@@ -47,11 +47,16 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log("");
-  console.log("Recruiter Mail Automation is running!");
-  console.log("Local:  http://localhost:" + PORT);
-  console.log("Press Ctrl+C to stop.");
-  console.log("");
-});
+// Start server (only when running locally, not on Vercel)
+if (process.env.VERCEL !== "1") {
+  app.listen(PORT, () => {
+    console.log("");
+    console.log("Recruiter Mail Automation is running!");
+    console.log("Local:  http://localhost:" + PORT);
+    console.log("Press Ctrl+C to stop.");
+    console.log("");
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;
