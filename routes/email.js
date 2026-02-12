@@ -11,9 +11,10 @@ const fs = require("fs");
 const { sendEmail } = require("../utils/mailer");
 const { buildEmailBody, buildSubject } = require("../utils/template");
 
-// Configure multer for resume uploads
+// Configure multer — use /tmp on Vercel (read-only filesystem)
+const uploadDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "..", "uploads");
 const upload = multer({
-    dest: path.join(__dirname, "..", "uploads"),
+    dest: uploadDir,
     limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
 });
 
