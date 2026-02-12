@@ -85,14 +85,6 @@ npm install
 # Edit the .env file with your credentials
 ```
 
-Open `.env` and fill in:
-
-```env
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=abcd efgh ijkl mnop
-PORT=3000
-```
-
 ### Step 4: Add Your Resume
 
 Place your resume file as `resume.pdf` in the project root:
