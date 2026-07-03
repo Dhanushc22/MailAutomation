@@ -7,6 +7,17 @@
     <title>Recruiter Mail Automation</title>
     <meta name="description"
         content="Send professional job application emails with your resume to recruiters in one click." />
+    <script>
+        // Simple client-side auth check
+        if (localStorage.getItem('isAuthenticated') !== 'true') {
+            window.location.href = '/login.html';
+        }
+        
+        function handleLogout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '/login.html';
+        }
+    </script>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,16 +32,21 @@
 
         <!-- Header -->
         <header class="header">
-            <div class="logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="M22 7l-10 7L2 7" />
-                </svg>
-            </div>
-            <div>
-                <h1 class="title">Recruiter Mail Automation</h1>
-                <p class="subtitle">Send professional job applications in one click</p>
+            <div style="display: flex; align-items: center; width: 100%;">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="M22 7l-10 7L2 7" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="title">Recruiter Mail Automation</h1>
+                    <p class="subtitle">Send professional job applications in one click</p>
+                </div>
+                <button onclick="handleLogout()" class="btn-logout" style="margin-left: auto; background: transparent; border: 1px solid #d1d5db; color: #4b5563; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500;">
+                    Logout
+                </button>
             </div>
         </header>
 

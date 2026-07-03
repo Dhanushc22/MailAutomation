@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Recruiter Mail Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 80px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eaeaea;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h2 {
+            margin: 0;
+            color: #1a1a1a;
+            font-size: 24px;
+        }
+        .login-header p {
+            color: #666;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        .login-form .field {
+            margin-bottom: 20px;
+        }
+        .error-message {
+            color: #dc2626;
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+            </svg>
+        </div>
+        <div class="title-wrap">
+            <h1>Recruiter Mail Automation</h1>
+            <p>Please login to continue</p>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Welcome Back</h2>
+            <p>Enter your credentials to access the dashboard</p>
+        </div>
+        <div id="login-error" class="error-message">Invalid email or password</div>
+        <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
+            <div class="field">
+                <label for="email">Email Address</label>
+                <div class="input-wrap">
+                    <input type="email" id="email" required placeholder="name@example.com" />
+                </div>
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <input type="password" id="password" required placeholder="••••••••" />
+                </div>
+            </div>
+            <button type="submit" class="btn-send">
+                <span class="btn-text">Login</span>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            // Hardcoded credentials as requested
+            if (email === 'dhanushc092@gmail.com' && password === 'Dhanush@123') {
+                localStorage.setItem('isAuthenticated', 'true');
+                window.location.href = '/';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
