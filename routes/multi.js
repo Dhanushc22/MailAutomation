@@ -32,7 +32,7 @@ router.post("/multi-send", upload.single("resume"), async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid emails format." });
         }
 
-        const { position } = req.body;
+        const { position, emailMode, customSubject, customBody } = req.body;
 
         if (!Array.isArray(emails) || emails.length === 0) {
             return res.status(400).json({ success: false, message: "Please provide at least one email." });
@@ -59,12 +59,19 @@ router.post("/multi-send", upload.single("resume"), async (req, res) => {
 
         for (const email of emails) {
             try {
-                const subject = buildSubject(position);
-                const body = buildEmailBody({
-                    recruiterName: "",
-                    companyName: "",
-                    position,
-                });
+                let subject = "";
+                let body = "";
+                if (emailMode === "manual") {
+                    subject = customSubject || "Job Application";
+                    body = customBody || "Please find my resume attached.";
+                } else {
+                    subject = buildSubject(position);
+                    body = buildEmailBody({
+                        recruiterName: "",
+                        companyName: "",
+                        position,
+                    });
+                }
 
                 await sendEmail({
                     to: email.trim(),

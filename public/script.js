@@ -93,6 +93,31 @@ function setupFilePicker(btn, input, label) {
 setupFilePicker(fileBtnSingle, resumeSingle, fileLabelSingle);
 setupFilePicker(fileBtnMulti, resumeMulti, fileLabelMulti);
 
+// Setup Email Mode Toggle
+function setupEmailModeToggle(radioName, positionFieldId, subjectFieldId, bodyFieldId) {
+    const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+    const posField = document.getElementById(positionFieldId);
+    const subField = document.getElementById(subjectFieldId);
+    const bodyField = document.getElementById(bodyFieldId);
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (e.target.value === 'manual') {
+                posField.classList.add('d-none');
+                subField.classList.remove('d-none');
+                bodyField.classList.remove('d-none');
+            } else {
+                posField.classList.remove('d-none');
+                subField.classList.add('d-none');
+                bodyField.classList.add('d-none');
+            }
+        });
+    });
+}
+setupEmailModeToggle('emailModeSingle', 'field-position', 'field-custom-subject-single', 'field-custom-body-single');
+setupEmailModeToggle('emailModeMulti', 'field-position-multi', 'field-custom-subject-multi', 'field-custom-body-multi');
+
+
 // ═══════════════════════════════════════════════
 // PANEL 1 — Single Email
 // ═══════════════════════════════════════════════
@@ -104,6 +129,9 @@ singleForm.addEventListener("submit", async (e) => {
     const recruiterName = document.getElementById("recruiter-name").value.trim();
     const companyName = document.getElementById("company-name").value.trim();
     const position = document.getElementById("position").value.trim();
+    const emailMode = document.querySelector('input[name="emailModeSingle"]:checked').value;
+    const customSubject = document.getElementById("custom-subject-single").value.trim();
+    const customBody = document.getElementById("custom-body-single").value.trim();
 
     // Validate email
     if (!recruiterEmail) {
@@ -135,6 +163,9 @@ singleForm.addEventListener("submit", async (e) => {
         fd.append("recruiterName", recruiterName);
         fd.append("companyName", companyName);
         fd.append("position", position);
+        fd.append("emailMode", emailMode);
+        fd.append("customSubject", customSubject);
+        fd.append("customBody", customBody);
         fd.append("resume", resumeSingle.files[0]);
 
         const res = await fetch("/api/send", { method: "POST", body: fd });
@@ -168,6 +199,9 @@ multiForm.addEventListener("submit", async (e) => {
 
     const raw = document.getElementById("multi-emails").value;
     const position = document.getElementById("multi-position").value.trim();
+    const emailMode = document.querySelector('input[name="emailModeMulti"]:checked').value;
+    const customSubject = document.getElementById("custom-subject-multi").value.trim();
+    const customBody = document.getElementById("custom-body-multi").value.trim();
     const emails = parseEmails(raw);
 
     if (emails.length === 0) {
@@ -204,6 +238,9 @@ multiForm.addEventListener("submit", async (e) => {
         const fd = new FormData();
         fd.append("emails", JSON.stringify(emails));
         fd.append("position", position);
+        fd.append("emailMode", emailMode);
+        fd.append("customSubject", customSubject);
+        fd.append("customBody", customBody);
         fd.append("resume", resumeMulti.files[0]);
 
         const res = await fetch("/api/multi-send", { method: "POST", body: fd });

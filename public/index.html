@@ -106,6 +106,19 @@
                         </div>
                     </div>
 
+                    <!-- Email Content Mode -->
+                    <div class="field">
+                        <label>Email Content</label>
+                        <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="emailModeSingle" value="auto" checked> Use Template (Position)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="emailModeSingle" value="manual"> Write Manually
+                            </label>
+                        </div>
+                    </div>
+
                     <!-- Position -->
                     <div class="field" id="field-position">
                         <label for="position">Position Applying For</label>
@@ -115,6 +128,30 @@
                                 <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
                             </svg>
                             <input type="text" id="position" name="position" placeholder="e.g. Software Developer" />
+                        </div>
+                    </div>
+
+                    <!-- Custom Subject -->
+                    <div class="field d-none" id="field-custom-subject-single">
+                        <label for="custom-subject-single">Email Subject</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M4 7V4h16v3M9 20h6M12 4v16" />
+                            </svg>
+                            <input type="text" id="custom-subject-single" placeholder="e.g. Application for Frontend Developer" />
+                        </div>
+                    </div>
+
+                    <!-- Custom Body -->
+                    <div class="field d-none" id="field-custom-body-single">
+                        <label for="custom-body-single">Email Body</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" style="top:16px;transform:none">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                            <textarea id="custom-body-single" placeholder="Write your email content here..."></textarea>
                         </div>
                     </div>
 
@@ -169,8 +206,21 @@
                         <p class="field-hint">Enter up to 10 emails, one per line or separated by commas</p>
                     </div>
 
-                    <!-- Position -->
+                    <!-- Email Content Mode -->
                     <div class="field">
+                        <label>Email Content</label>
+                        <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="emailModeMulti" value="auto" checked> Use Template (Position)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="emailModeMulti" value="manual"> Write Manually
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Position -->
+                    <div class="field" id="field-position-multi">
                         <label for="multi-position">Position Applying For</label>
                         <div class="input-wrap">
                             <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -179,6 +229,30 @@
                             </svg>
                             <input type="text" id="multi-position" name="position"
                                 placeholder="e.g. Software Developer" />
+                        </div>
+                    </div>
+
+                    <!-- Custom Subject -->
+                    <div class="field d-none" id="field-custom-subject-multi">
+                        <label for="custom-subject-multi">Email Subject</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M4 7V4h16v3M9 20h6M12 4v16" />
+                            </svg>
+                            <input type="text" id="custom-subject-multi" placeholder="e.g. Application for Frontend Developer" />
+                        </div>
+                    </div>
+
+                    <!-- Custom Body -->
+                    <div class="field d-none" id="field-custom-body-multi">
+                        <label for="custom-body-multi">Email Body</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" style="top:16px;transform:none">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                            <textarea id="custom-body-multi" placeholder="Write your email content here..."></textarea>
                         </div>
                     </div>
 

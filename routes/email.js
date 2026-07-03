@@ -24,7 +24,7 @@ const upload = multer({
  */
 router.post("/send", upload.single("resume"), async (req, res) => {
     try {
-        const { recruiterEmail, recruiterName, companyName, position } = req.body;
+        const { recruiterEmail, recruiterName, companyName, position, emailMode, customSubject, customBody } = req.body;
 
         // Validate email
         if (!recruiterEmail || !recruiterEmail.trim()) {
@@ -42,8 +42,15 @@ router.post("/send", upload.single("resume"), async (req, res) => {
         }
 
         // Build email
-        const subject = buildSubject(position);
-        const body = buildEmailBody({ recruiterName, companyName, position });
+        let subject = "";
+        let body = "";
+        if (emailMode === "manual") {
+            subject = customSubject || "Job Application";
+            body = customBody || "Please find my resume attached.";
+        } else {
+            subject = buildSubject(position);
+            body = buildEmailBody({ recruiterName, companyName, position });
+        }
 
         // Send email with uploaded resume
         await sendEmail({
